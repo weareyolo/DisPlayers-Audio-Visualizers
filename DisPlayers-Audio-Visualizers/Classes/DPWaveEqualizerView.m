@@ -74,12 +74,11 @@
     CGPoint leftBottom = CGPointMake(0, CGRectGetHeight(rect));
     CGPoint rightBottom = CGPointMake(CGRectGetWidth(rect), CGRectGetHeight(rect));
     
-    NSMutableArray *points = [[self arrayOfPointsForBinRange: NSMakeRange(0, self.equalizerSettings.numOfBins / 2)] mutableCopy];
-    NSMutableArray *points2 = [[self arrayOfPointsForBinRange: NSMakeRange(self.equalizerSettings.numOfBins / 2, self.equalizerSettings.numOfBins / 2)] mutableCopy];
+    NSMutableArray *points = [[self arrayOfPointsForBinRange: NSMakeRange(0, self.equalizerSettings.numOfBins)] mutableCopy];
+//    NSMutableArray *points2 = [[self arrayOfPointsForBinRange: NSMakeRange(self.equalizerSettings.numOfBins / 2, self.equalizerSettings.numOfBins / 2)] mutableCopy];
     
     // Add control points to make the math make sense
     UIBezierPath *lowFrequencyLineGraph = [self addBezierPathBetweenPoints: points toView: self];
-    UIBezierPath *hightFrequencyLineGraph = [self addBezierPathBetweenPoints: points2 toView: self];
 
     
     if (self.equalizerSettings.fillGraph) {
@@ -92,29 +91,29 @@
         [lowFrequencyLineGraph closePath];
         [lowFrequencyLineGraph fill]; // fill color (if closed)
         
-        [self.hightFrequencyColor setFill];
-        [self.hightFrequencyColor setStroke];
-
-        [hightFrequencyLineGraph addLineToPoint:CGPointMake(leftBottom.x, leftBottom.y)];
-        [hightFrequencyLineGraph addLineToPoint:CGPointMake(rightBottom.x, rightBottom.y)];
-        [hightFrequencyLineGraph closePath];
-        [hightFrequencyLineGraph fill]; // fill color (if closed)
+//        [self.hightFrequencyColor setFill];
+//        [self.hightFrequencyColor setStroke];
+//
+//        [hightFrequencyLineGraph addLineToPoint:CGPointMake(leftBottom.x, leftBottom.y)];
+//        [hightFrequencyLineGraph addLineToPoint:CGPointMake(rightBottom.x, rightBottom.y)];
+//        [hightFrequencyLineGraph closePath];
+//        [hightFrequencyLineGraph fill]; // fill color (if closed)
         
     } else {
-        
-        [self.lowFrequencyColor setStroke];
-
-        lowFrequencyLineGraph.lineCapStyle = kCGLineCapRound;
-        lowFrequencyLineGraph.lineJoinStyle = kCGLineJoinRound;
-        lowFrequencyLineGraph.lineWidth = 0.5; // line width
-        [lowFrequencyLineGraph stroke];
-        
-        [self.hightFrequencyColor setStroke];
-
-        hightFrequencyLineGraph.lineCapStyle = kCGLineCapRound;
-        hightFrequencyLineGraph.lineJoinStyle = kCGLineJoinRound;
-                hightFrequencyLineGraph.lineWidth = 0.5; // line width
-        [hightFrequencyLineGraph stroke];
+//        
+//        [self.lowFrequencyColor setStroke];
+//
+//        lowFrequencyLineGraph.lineCapStyle = kCGLineCapRound;
+//        lowFrequencyLineGraph.lineJoinStyle = kCGLineJoinRound;
+//        lowFrequencyLineGraph.lineWidth = 0.5; // line width
+//        [lowFrequencyLineGraph stroke];
+//        
+//        [self.hightFrequencyColor setStroke];
+//
+//        hightFrequencyLineGraph.lineCapStyle = kCGLineCapRound;
+//        hightFrequencyLineGraph.lineJoinStyle = kCGLineJoinRound;
+//                hightFrequencyLineGraph.lineWidth = 0.5; // line width
+//        [hightFrequencyLineGraph stroke];
     }
     CGContextRestoreGState(ctx);
 }
